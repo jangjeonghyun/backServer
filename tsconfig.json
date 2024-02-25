@@ -1,0 +1,29 @@
+{
+  "exclude": ["node_modules", "build"],
+  "include": ["./*", "./config/*.json"],
+  "compilerOptions": {
+    "outDir": "./build/",
+    "target": "ES6",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "removeComments": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "allowJs": true,
+    "baseUrl": ".",
+    "typeRoots": [
+      "./node_modules/@types",
+      "./@types",
+      "./utils/interfaces/index.d.ts"
+    ],
+    "paths": {
+      "*": ["@types/*"]
+    }
+  },
+  "ts-node": {
+    "files": true,
+    "require": ["tsconfig-paths/register"]
+  }
+}

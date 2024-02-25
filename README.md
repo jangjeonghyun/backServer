@@ -1,2 +1,0 @@
-# backServer
-purpose server

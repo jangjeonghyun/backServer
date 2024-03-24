@@ -8,8 +8,6 @@ const app: Express = express();
 app.use(cors({ origin: true, credentials: true }));
 app.use("/pictures", express.static("pictures"));
 app.use("/video", express.static("video"));
-app.use("/chats", express.static("chats"));
-app.use("/phoneCall", express.static("phoneCall"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 

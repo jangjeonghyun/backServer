@@ -3,15 +3,13 @@ import fs from "fs";
 
 const PICTURES_PATH = "./pictures";
 const VIDEO_PATH = "./video";
-const CHATS_PATH = "./chats";
-const PHONE_CALL_PATH = "./phoneCall";
+// const PHONE_CALL_PATH = "./phoneCall";
 const DISPLAY_IMAGE = 9;
-const DISPLAY_CALL = 18;
+// const DISPLAY_CALL = 18;
 
-const readPhoneCallDir = fs.readdirSync(PHONE_CALL_PATH);
+// const readPhoneCallDir = fs.readdirSync(PHONE_CALL_PATH);
 const readPictureDir = fs.readdirSync(PICTURES_PATH);
 const readVideoDir = fs.readdirSync(VIDEO_PATH);
-const readChatDir = fs.readdirSync(CHATS_PATH);
 
 const getCategoryList = async (req: Request, res: Response) => {
   try {
@@ -69,40 +67,40 @@ const getVideoList = async (req: Request, res: Response) => {
   }
 };
 
-const getChatList = async (req: Request, res: Response) => {
-  try {
-    let list: string[] = [];
+// const getChatList = async (req: Request, res: Response) => {
+//   try {
+//     let list: string[] = [];
 
-    readChatDir.map((fileName) => {
-      list.push(fs.readFileSync(`${CHATS_PATH}/${fileName}`).toString());
-    });
+//     readChatDir.map((fileName) => {
+//       list.push(fs.readFileSync(`${CHATS_PATH}/${fileName}`).toString());
+//     });
 
-    res.json(list);
-  } catch (error) {
-    console.log(error);
-    res.json({ msg: "server error", error });
-  }
-};
+//     res.json(list);
+//   } catch (error) {
+//     console.log(error);
+//     res.json({ msg: "server error", error });
+//   }
+// };
 
-const getPhoneCallList = async (req: Request, res: Response) => {
-  try {
-    const { page } = req.query;
-    let offset: number = (Number(page) - 1) * DISPLAY_IMAGE;
-    let list: string[] = [];
-    let totalPage: number;
+// const getPhoneCallList = async (req: Request, res: Response) => {
+//   try {
+//     const { page } = req.query;
+//     let offset: number = (Number(page) - 1) * DISPLAY_IMAGE;
+//     let list: string[] = [];
+//     let totalPage: number;
 
-    readPhoneCallDir.map((fileName) => {
-      list.push(`${PHONE_CALL_PATH.replace(".", "")}/${fileName}`);
-    });
-    totalPage = Math.ceil(list.length / DISPLAY_CALL);
-    list = list.slice(offset, offset + DISPLAY_CALL);
+//     readPhoneCallDir.map((fileName) => {
+//       list.push(`${PHONE_CALL_PATH.replace(".", "")}/${fileName}`);
+//     });
+//     totalPage = Math.ceil(list.length / DISPLAY_CALL);
+//     list = list.slice(offset, offset + DISPLAY_CALL);
 
-    res.json({ list, totalPage });
-  } catch (error) {
-    console.log(error);
-    res.json({ msg: "server error", error });
-  }
-};
+//     res.json({ list, totalPage });
+//   } catch (error) {
+//     console.log(error);
+//     res.json({ msg: "server error", error });
+//   }
+// };
 
 const getMainList = async (req: Request, res: Response) => {
   try {
@@ -124,11 +122,4 @@ const getMainList = async (req: Request, res: Response) => {
     res.json({ msg: "server error", error });
   }
 };
-export {
-  getCategoryList,
-  getPicturesList,
-  getVideoList,
-  getChatList,
-  getPhoneCallList,
-  getMainList,
-};
+export { getCategoryList, getPicturesList, getVideoList, getMainList };
